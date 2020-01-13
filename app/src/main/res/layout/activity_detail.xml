@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityDetail">
+
+    <TextView
+        android:id="@+id/tvNameDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:capitalize="none"
+        android:paddingBottom="8dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:text="Model: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvModelDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/costCredits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:text="Cost in credits: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvCreditsDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:text="Length:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvLengthDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/mas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:text="Max atmosphering speed: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvMasDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/crew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:text="Crew:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvCrew"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp" />
+</LinearLayout>

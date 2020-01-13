@@ -2,13 +2,28 @@ package edu.curso.android.starships;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import edu.curso.android.starships.api.RetroFitClient;
+import edu.curso.android.starships.api.Starship;
+import edu.curso.android.starships.api.StarshipList;
+import edu.curso.android.starships.api.StarshipService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView RecyclerViewStarshipsList;
+    private TextView tvStarship;
+    private Button btShipList;
 
 
     @Override
@@ -16,19 +31,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar_starship_list= findViewById(R.id.toolbar_starships_list);
-        toolbar_starship_list.setTitle("STARSHIPS");
-        setSupportActionBar(toolbar_starship_list);
-        RecyclerViewStarshipsList = findViewById(R.id.RecyclerViewStarshipList);
+        tvStarship = findViewById(R.id.tvStarship);
+        btShipList = findViewById(R.id.bnShipList);
 
-      //  LinearLayoutManager layoutManager = new RecyclerViewStarshipsList(this);
-      //  RecyclerViewStarshipsList.setLayoutManager(layoutManager);
+        btShipList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getStarship(v);
+            }
+        });
+    }
 
-       // DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
-       // recyclerViewContactos.addItemDecoration(dividerItemDecoration);
+    private void getStarship(View v)
+    {
+        StarshipService starshipService = RetroFitClient.recuperarRetrofit().create(StarshipService.class);
+        Call<StarshipList> call = starshipService.starshipList();
+        call.enqueue(new Callback<StarshipList>() {
+            @Override
+            public void onResponse(Call<StarshipList> call, Response<StarshipList> response) {
+                ArrayList<Starship> starships = response.body().getResults();
+                System.out.println(starships);
+                toStarshipListActivity(starships);
+            }
 
-       // RecyclerAdapterContactos recyclerAdapterContactos = new RecyclerAdapterContactos(this, contactos);
-       // recyclerViewContactos.setAdapter(recyclerAdapterContactos);
+            @Override
+            public void onFailure(Call<StarshipList> call, Throwable t) {
+                System.out.println(t + "upps error");
+            }
+        });
+    }
+
+
+    private void toStarshipListActivity(ArrayList<Starship> starships) {
+        Intent intentToMainActivityStarshipsList = new Intent(this, ActivityStarshipsList.class);
+        if(starships != null) {
+            intentToMainActivityStarshipsList.putExtra("starships", starships);
+        }
+        startActivity(intentToMainActivityStarshipsList);
     }
 
 
